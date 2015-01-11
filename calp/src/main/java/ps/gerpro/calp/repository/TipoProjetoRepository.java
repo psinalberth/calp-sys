@@ -6,5 +6,5 @@ import ps.gerpro.calp.model.TipoProjeto;
 
 @RequestScoped
 public interface TipoProjetoRepository extends GenericRepository<TipoProjeto> {
-	
+
 }

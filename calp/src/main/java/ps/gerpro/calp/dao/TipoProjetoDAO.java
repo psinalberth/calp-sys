@@ -16,11 +16,6 @@ public class TipoProjetoDAO implements TipoProjetoRepository {
 	
 	@Inject
 	private Session session;
-	
-	public TipoProjetoDAO(Session session) {
-		
-		this.session = session;
-	}
 
 	public void salvar(TipoProjeto persist) {
 		
