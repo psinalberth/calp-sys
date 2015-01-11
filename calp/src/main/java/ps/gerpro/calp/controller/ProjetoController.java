@@ -27,12 +27,12 @@ public class ProjetoController {
 	@Get("/")
 	public void listar() {
 		
-		result.use(Results.json()).withoutRoot().from(repository.getAll()).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getAll()).recursive().serialize();
 	}
 	
 	@Get("/id/{id}")
 	public void getById(int id) {
-		result.use(Results.json()).withoutRoot().from(repository.getById(id)).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getById(id)).recursive().serialize();
 	}
 	
 	@Get("/{key}/{value}/")
