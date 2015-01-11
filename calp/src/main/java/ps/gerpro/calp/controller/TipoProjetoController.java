@@ -15,7 +15,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 
 @Controller
-@Path("/categorias")
+@Path("/categorias_projeto")
 public class TipoProjetoController {
 	
 	@Inject
