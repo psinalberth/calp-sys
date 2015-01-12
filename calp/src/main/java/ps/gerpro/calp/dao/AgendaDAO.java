@@ -47,7 +47,7 @@ public class AgendaDAO implements AgendaRepository {
 	@SuppressWarnings("unchecked")
 	public List<Agenda> getHorariosLivres() {
 		
-		String sql = "FROM Agenda a LEFT JOIN FETCH a.aluno";
+		String sql = "FROM Agenda a LEFT JOIN FETCH a.aluno ORDER BY a.id ASC";
 		
 		Query query = this.session.createQuery(sql);
 		
