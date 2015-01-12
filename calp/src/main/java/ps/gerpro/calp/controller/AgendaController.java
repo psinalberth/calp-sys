@@ -29,6 +29,11 @@ public class AgendaController {
 		result.use(Results.json()).withoutRoot().from(repository.getAll()).include("aluno", "horario", "professor").serialize();
 	}
 	
+	@Get("/livre")
+	public void horariosLivres() {
+		result.use(Results.json()).withoutRoot().from(repository.getHorariosLivres()).include("horario", "aluno", "professor").serialize();
+	}
+	
 	@Get("/id/{id}")
 	public void getById(int id) {
 		result.use(Results.json()).withoutRoot().from(repository.getById(id)).include("aluno", "horario", "professor").serialize();

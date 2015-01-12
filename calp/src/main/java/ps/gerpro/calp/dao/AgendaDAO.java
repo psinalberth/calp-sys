@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -41,5 +42,15 @@ public class AgendaDAO implements AgendaRepository {
 	@SuppressWarnings("unchecked")
 	public List<Agenda> getAll() {
 		return this.session.createCriteria(Agenda.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Agenda> getHorariosLivres() {
+		
+		String sql = "FROM Agenda a LEFT JOIN FETCH a.aluno";
+		
+		Query query = this.session.createQuery(sql);
+		
+		return query.list();
 	}
 }
