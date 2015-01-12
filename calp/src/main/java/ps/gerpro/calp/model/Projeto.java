@@ -57,7 +57,7 @@ public class Projeto implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "TIPO_PROJETO_ID", nullable = false)
 	public TipoProjeto getTipoProjeto() {
 		return this.tipoProjeto;
@@ -67,7 +67,7 @@ public class Projeto implements java.io.Serializable {
 		this.tipoProjeto = tipoProjeto;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "PROFESSOR_ID", nullable = false)
 	public Professor getProfessor() {
 		return this.professor;
@@ -95,7 +95,7 @@ public class Projeto implements java.io.Serializable {
 		this.resumo = resumo;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "projeto")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "projeto")
 	public Set<Aluno> getAlunos() {
 		return this.alunos;
 	}

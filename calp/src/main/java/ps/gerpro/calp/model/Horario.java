@@ -70,7 +70,7 @@ public class Horario implements java.io.Serializable {
 		this.turno = turno;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "AGENDA", catalog = "labpesquisa",
 	joinColumns = {@JoinColumn(name = "HORARIO_ID", nullable = false, updatable = false)},
 	inverseJoinColumns = {@JoinColumn(name = "ALUNO_ID", nullable = false, updatable = false)})

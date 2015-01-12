@@ -92,7 +92,7 @@ public class Professor implements java.io.Serializable {
 		this.senha = senha;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professor")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "professor")
 	public Set<Projeto> getProjetos() {
 		return this.projetos;
 	}
@@ -101,7 +101,7 @@ public class Professor implements java.io.Serializable {
 		this.projetos = projetos;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "professor")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "professor")
 	public Set<Agenda> getAgendas() {
 		return this.agendas;
 	}

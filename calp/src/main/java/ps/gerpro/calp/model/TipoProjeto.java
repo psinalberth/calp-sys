@@ -53,7 +53,7 @@ public class TipoProjeto implements java.io.Serializable {
 		this.nome = nome;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoProjeto")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "tipoProjeto")
 	public Set<Projeto> getProjetos() {
 		return this.projetos;
 	}

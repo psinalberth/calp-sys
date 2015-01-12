@@ -3,6 +3,7 @@ package ps.gerpro.calp.controller;
 import javax.inject.Inject;
 
 import ps.gerpro.calp.model.Projeto;
+
 import ps.gerpro.calp.repository.ProjetoRepository;
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
@@ -27,7 +28,7 @@ public class ProjetoController {
 	@Get("/")
 	public void listar() {
 		
-		result.use(Results.json()).withoutRoot().from(repository.getAll()).recursive().serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getAll()).include("professor", "tipoProjeto").serialize();
 	}
 	
 	@Get("/id/{id}")
