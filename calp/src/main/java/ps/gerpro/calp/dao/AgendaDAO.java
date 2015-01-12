@@ -24,7 +24,7 @@ public class AgendaDAO implements AgendaRepository {
 	}
 
 	public void alterar(Agenda persist) {
-		this.session.merge(persist);
+		this.session.update(persist);
 	}
 
 	public Agenda getById(int id) {

@@ -43,7 +43,7 @@ public class Agenda implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ALUNO_ID", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "ALUNO_ID", nullable = true, insertable = true, updatable = true)
 	public Aluno getAluno() {
 		return this.aluno;
 	}
@@ -53,7 +53,7 @@ public class Agenda implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "PROFESSOR_ID", nullable = false)
+	@JoinColumn(name = "PROFESSOR_ID", nullable = true)
 	public Professor getProfessor() {
 		return this.professor;
 	}
@@ -63,7 +63,7 @@ public class Agenda implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "HORARIO_ID", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "HORARIO_ID", nullable = true, insertable = true, updatable = true)
 	public Horario getHorario() {
 		return this.horario;
 	}
