@@ -27,17 +27,17 @@ public class AlunoController {
 	@Get("/")
 	public void listar() {
 		
-		result.use(Results.json()).withoutRoot().from(repository.getAll()).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getAll()).include("projeto").serialize();
 	}
 	
 	@Get("/id/{id}")
 	public void getById(int id) {
-		result.use(Results.json()).withoutRoot().from(repository.getById(id)).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getById(id)).include("projeto").serialize();
 	}
 	
 	@Get("/{key}/{value}/")
 	public void getByNome(String key, String value) {
-		result.use(Results.json()).withoutRoot().from(repository.getByColumn(key, value)).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getByColumn(key, value)).include("projeto").serialize();
 	}
 	
 	@Post("/salvar/")

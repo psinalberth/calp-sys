@@ -33,12 +33,12 @@ public class ProjetoController {
 	
 	@Get("/id/{id}")
 	public void getById(int id) {
-		result.use(Results.json()).withoutRoot().from(repository.getById(id)).recursive().serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getById(id)).include("professor", "tipoProjeto").serialize();
 	}
 	
 	@Get("/{key}/{value}/")
 	public void getByColumn(String key, String value) {
-		result.use(Results.json()).withoutRoot().from(repository.getByColumn(key, value)).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getByColumn(key, value)).include("professor", "tipoProjeto").serialize();
 	}
 	
 	@Post("/salvar/")
