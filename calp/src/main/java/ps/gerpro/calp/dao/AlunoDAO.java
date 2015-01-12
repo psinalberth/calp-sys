@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -40,6 +41,6 @@ public class AlunoDAO implements AlunoRepository {
 	
 	@SuppressWarnings("unchecked")
 	public List<Aluno> getAll() {
-		return this.session.createCriteria(Aluno.class).list();
+		return this.session.createCriteria(Aluno.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 }

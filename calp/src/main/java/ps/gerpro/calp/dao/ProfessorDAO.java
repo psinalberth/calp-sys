@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -39,6 +40,6 @@ public class ProfessorDAO implements ProfessorRepository {
 	
 	@SuppressWarnings("unchecked")
 	public List<Professor> getAll() {
-		return this.session.createCriteria(Professor.class).list();
+		return this.session.createCriteria(Professor.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 }

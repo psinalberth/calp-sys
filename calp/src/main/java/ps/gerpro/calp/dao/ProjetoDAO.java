@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -39,23 +40,6 @@ public class ProjetoDAO implements ProjetoRepository {
 	
 	@SuppressWarnings("unchecked")
 	public List<Projeto> getAll() {
-	
-//		Criteria criteria = this.session.createCriteria(Projeto.class);
-//		criteria.setFetchMode("Professor", FetchMode.JOIN);
-//		criteria.setFetchMode("TipoProjeto", FetchMode.JOIN);
-//		criteria.createAlias("tipoProjeto", "tipo");
-//		criteria.createAlias("professor", "professor");
-//		
-//		ProjectionList columns = Projections.projectionList().
-//				add(Projections.property("id")).
-//				add(Projections.property("nome")).
-//				add(Projections.property("resumo")).
-//				add(Projections.property("tipo.nome")).
-//				add(Projections.property("professor.nome"));
-//		
-//		criteria.setProjection(columns);
-//		
-//		return criteria.list();
-		return this.session.createCriteria(Projeto.class).list();
+		return this.session.createCriteria(Projeto.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -45,6 +46,6 @@ public class TipoProjetoDAO implements TipoProjetoRepository {
 	@SuppressWarnings("unchecked")
 	public List<TipoProjeto> getAll() {
 		
-		return this.session.createCriteria(TipoProjeto.class).list();
+		return this.session.createCriteria(TipoProjeto.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 }
