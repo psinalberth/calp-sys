@@ -26,17 +26,17 @@ public class AgendaController {
 	
 	@Get("/")
 	public void listar() {
-		result.use(Results.json()).withoutRoot().from(repository.getAll()).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getAll()).include("aluno", "horario", "professor").serialize();
 	}
 	
 	@Get("/id/{id}")
 	public void getById(int id) {
-		result.use(Results.json()).withoutRoot().from(repository.getById(id)).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getById(id)).include("aluno", "horario", "professor").serialize();
 	}
 	
 	@Get("/{key}/{value}/")
 	public void getByColumn(String key, String value) {
-		result.use(Results.json()).withoutRoot().from(repository.getByColumn(key, value)).serialize();
+		result.use(Results.json()).withoutRoot().from(repository.getByColumn(key, value)).include("aluno", "horario", "professor").serialize();
 	}
 	
 	@Post("/salvar/")
