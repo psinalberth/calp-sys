@@ -6,9 +6,9 @@
 	<session-factory>
 
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.password">gerpro2014</property>
-		<property name="hibernate.connection.url">jdbc:mysql://mysql34541-radiosomtotal.jelastic.elastx.net/labpesquisa</property>
-		<property name="hibernate.connection.username">usuario_banco</property>
+		<property name="hibernate.connection.password">q3vgvj7z</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/labpesquisa</property>
+		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
 		<property name="hbm2ddl.auto">update</property>
@@ -29,6 +29,6 @@
 		<mapping class="ps.gerpro.calp.model.Horario" />
 		<mapping class="ps.gerpro.calp.model.Projeto" />
 		<mapping class="ps.gerpro.calp.model.TipoProjeto" />
-		<mapping class="ps.gerpro.calp.model.AgendaId" />
+		
 	</session-factory>
 </hibernate-configuration>

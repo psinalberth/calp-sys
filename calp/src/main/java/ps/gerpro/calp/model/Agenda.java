@@ -1,11 +1,12 @@
 package ps.gerpro.calp.model;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
+
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,7 +17,7 @@ public class Agenda implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private AgendaId id;
+	private Integer id;
 	private Aluno aluno;
 	private Professor professor;
 	private Horario horario;
@@ -24,22 +25,20 @@ public class Agenda implements java.io.Serializable {
 	public Agenda() {
 	}
 
-	public Agenda(AgendaId id, Aluno aluno, Professor professor, Horario horario) {
-		this.id = id;
+	public Agenda(Aluno aluno, Professor professor, Horario horario) {
 		this.aluno = aluno;
 		this.professor = professor;
 		this.horario = horario;
 	}
-
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "horarioId", column = @Column(name = "HORARIO_ID", nullable = false)),
-			@AttributeOverride(name = "alunoId", column = @Column(name = "ALUNO_ID", nullable = false)) })
-	public AgendaId getId() {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false)
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(AgendaId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
