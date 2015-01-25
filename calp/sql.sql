@@ -1,0 +1,214 @@
+-- MySQL dump 10.13  Distrib 5.5.40, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: labpesquisa
+-- ------------------------------------------------------
+-- Server version	5.5.40-0+wheezy1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `AGENDA`
+--
+
+DROP TABLE IF EXISTS `AGENDA`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `AGENDA` (
+  `HORARIO_ID` int(11) NOT NULL,
+  `ALUNO_ID` int(11) NOT NULL,
+  `PROFESSOR_ID` int(11) NOT NULL,
+  PRIMARY KEY (`HORARIO_ID`,`ALUNO_ID`),
+  KEY `fk_AGENDA_HORARIO1` (`HORARIO_ID`),
+  KEY `fk_AGENDA_ALUNO1` (`ALUNO_ID`),
+  KEY `fk_AGENDA_PROFESSOR1` (`PROFESSOR_ID`),
+  CONSTRAINT `fk_AGENDA_ALUNO1` FOREIGN KEY (`ALUNO_ID`) REFERENCES `ALUNO` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_AGENDA_HORARIO1` FOREIGN KEY (`HORARIO_ID`) REFERENCES `HORARIO` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_AGENDA_PROFESSOR1` FOREIGN KEY (`PROFESSOR_ID`) REFERENCES `PROFESSOR` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AGENDA`
+--
+
+LOCK TABLES `AGENDA` WRITE;
+/*!40000 ALTER TABLE `AGENDA` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AGENDA` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ALUNO`
+--
+
+DROP TABLE IF EXISTS `ALUNO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ALUNO` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(100) NOT NULL,
+  `PROJETO_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `fk_ALUNO_PROJETO1` (`PROJETO_ID`),
+  CONSTRAINT `fk_ALUNO_PROJETO1` FOREIGN KEY (`PROJETO_ID`) REFERENCES `PROJETO` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ALUNO`
+--
+
+LOCK TABLES `ALUNO` WRITE;
+/*!40000 ALTER TABLE `ALUNO` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ALUNO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ALUNO_HORARIO`
+--
+
+DROP TABLE IF EXISTS `ALUNO_HORARIO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ALUNO_HORARIO` (
+  `ALUNO_ID` int(11) NOT NULL,
+  `horarios_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ALUNO_ID`,`horarios_ID`),
+  KEY `FK_q7xs0lbbpa24w3n1v99i3wnf` (`horarios_ID`),
+  CONSTRAINT `FK_qm21n05d32bqo9x6oq1xl49l4` FOREIGN KEY (`ALUNO_ID`) REFERENCES `ALUNO` (`ID`),
+  CONSTRAINT `FK_q7xs0lbbpa24w3n1v99i3wnf` FOREIGN KEY (`horarios_ID`) REFERENCES `HORARIO` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ALUNO_HORARIO`
+--
+
+LOCK TABLES `ALUNO_HORARIO` WRITE;
+/*!40000 ALTER TABLE `ALUNO_HORARIO` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ALUNO_HORARIO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `HORARIO`
+--
+
+DROP TABLE IF EXISTS `HORARIO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `HORARIO` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DIA` varchar(45) NOT NULL,
+  `TURNO` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `HORARIO`
+--
+
+LOCK TABLES `HORARIO` WRITE;
+/*!40000 ALTER TABLE `HORARIO` DISABLE KEYS */;
+/*!40000 ALTER TABLE `HORARIO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PROFESSOR`
+--
+
+DROP TABLE IF EXISTS `PROFESSOR`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PROFESSOR` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(45) NOT NULL,
+  `ADMIN` tinyint(1) NOT NULL,
+  `EMAIL` varchar(45) NOT NULL,
+  `SENHA` varchar(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PROFESSOR`
+--
+
+LOCK TABLES `PROFESSOR` WRITE;
+/*!40000 ALTER TABLE `PROFESSOR` DISABLE KEYS */;
+INSERT INTO `PROFESSOR` VALUES (1,'Samir Kramrot',0,'samir@ps.edu.br','kkk123'),(2,'Peter Norvig',1,'novig.p@ps.edu.br','aimamia');
+/*!40000 ALTER TABLE `PROFESSOR` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PROJETO`
+--
+
+DROP TABLE IF EXISTS `PROJETO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PROJETO` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(120) NOT NULL,
+  `RESUMO` text NOT NULL,
+  `TIPO_PROJETO_ID` int(11) NOT NULL,
+  `PROFESSOR_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `fk_PROJETO_TIPO_PROJETO1` (`TIPO_PROJETO_ID`),
+  KEY `fk_PROJETO_PROFESSOR1` (`PROFESSOR_ID`),
+  CONSTRAINT `fk_PROJETO_PROFESSOR1` FOREIGN KEY (`PROFESSOR_ID`) REFERENCES `PROFESSOR` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PROJETO_TIPO_PROJETO1` FOREIGN KEY (`TIPO_PROJETO_ID`) REFERENCES `TIPO_PROJETO` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PROJETO`
+--
+
+LOCK TABLES `PROJETO` WRITE;
+/*!40000 ALTER TABLE `PROJETO` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PROJETO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TIPO_PROJETO`
+--
+
+DROP TABLE IF EXISTS `TIPO_PROJETO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `TIPO_PROJETO` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(30) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TIPO_PROJETO`
+--
+
+LOCK TABLES `TIPO_PROJETO` WRITE;
+/*!40000 ALTER TABLE `TIPO_PROJETO` DISABLE KEYS */;
+INSERT INTO `TIPO_PROJETO` VALUES (1,'PIBIC'),(2,'PIBIC Junior');
+/*!40000 ALTER TABLE `TIPO_PROJETO` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-01-10 21:11:55
